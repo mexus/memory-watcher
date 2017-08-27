@@ -9,6 +9,7 @@ use std::thread;
 use std::time::{Duration, Instant};
 
 /// Information on running program.
+#[derive(Debug, Clone)]
 pub struct ProcessInfo {
     /// Process ID.
     pid: pid_t,
@@ -123,7 +124,7 @@ pub fn wait_stop(prog_info: &ProcessInfo, timeout: Duration) -> Result<(), Error
 }
 
 /// Launches and detaches a process.
-pub fn launch_process<I, S>(cmd: &str, args: I, env_vars: Environ) -> Result<(), Error>
+pub fn launch_process<I, S>(cmd: &str, args: I, original: ProcessInfo) -> Result<(), Error>
 where
     I: IntoIterator<Item = S>,
     S: AsRef<OsStr>,
@@ -132,7 +133,7 @@ where
     Command::new(cmd)
         .args(args)
         .env_clear()
-        .envs(env_vars.map(|x| match x {
+        .envs(original.env.map(|x| match x {
             Ok(x) => x,
             Err(e) => panic!["Can't parse environment: {:?}", e],
         }))
@@ -154,6 +155,6 @@ where
 {
     send_signal(process.pid, libc::SIGTERM)?;
     wait_stop(&process, wait_timeout)?;
-    launch_process(cmd, args, process.env)?;
+    launch_process(cmd, args, process)?;
     Ok(())
 }

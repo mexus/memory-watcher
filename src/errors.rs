@@ -1,5 +1,5 @@
 use std::ffi::OsString;
-use std::{io, num};
+use std::{io, num, str};
 use super::log4rs;
 
 quick_error! {

@@ -49,6 +49,12 @@ pub fn build_cli() -> clap::App<'static, 'static> {
                 .help("Logs configuration."),
         )
         .arg(
+            Arg::with_name("CHECK")
+                .long("--check")
+                .required(false)
+                .help("Check if the process has been relaunched."),
+        )
+        .arg(
             Arg::with_name("CMD")
                 .long("--command")
                 .short("-c")
