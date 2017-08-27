@@ -17,10 +17,10 @@ process its initial environment variables are captured (using the
 
 ## Using with systemd.timer
 
-Here's an example of a user systemd timer (and service) that periodically run
+Here's an example of a user systemd timer (and service) that periodically runs
 the tool:
 ```sh
-$ cat .config/systemd/user/plasmashell-memory-watcher.service 
+$ cat .config/systemd/user/plasmashell-memory-watcher.service
 [Unit]
 Description=Memory watcher for plasmashell
 
@@ -33,7 +33,7 @@ ExecStart=/usr/bin/memory-watcher \
           --command "/usr/bin/kstart5" \
           -- "plasmashell"
 
-$ cat .config/systemd/user/plasmashell-memory-watcher.timer 
+$ cat .config/systemd/user/plasmashell-memory-watcher.timer
 [Unit]
 Description=Timer for the memory watcher for plasmashell every 5 minutes
 
