@@ -34,13 +34,13 @@ Description=Memory watcher for plasmashell
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/memory-watcher \
+ExecStart=/home/mexus/devel/memory-watcher/target/release/memory-watcher \
           --name plasmashell \
-          --threshold 2147483648 \
-          --log-config /etc/memory-watcher/log4rs.yml \
+          --threshold 124288000 \
+          --log-config /home/mexus/devel/memory-watcher/log4rs.yml \
           --check \
-          --command "/usr/bin/kstart5" \
-          -- "plasmashell"
+          --command /usr/bin/systemd-run \
+          -- --user plasmashell
 
 $ cat .config/systemd/user/plasmashell-memory-watcher.timer
 [Unit]
