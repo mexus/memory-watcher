@@ -1,0 +1,13 @@
+[package]
+name = "memory-watcher"
+version = "0.1.0"
+authors = ["mexus <gilaldpellaeon@gmail.com>"]
+
+[dependencies]
+clap = "*"
+lazy_static = "*"
+libc = "*"
+log = "*"
+log4rs = "*"
+procinfo = { git = "https://github.com/mexus/procinfo-rs.git" }
+quick-error = "*"

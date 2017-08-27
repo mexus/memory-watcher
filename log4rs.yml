@@ -1,0 +1,12 @@
+# Default logs configuration
+
+appenders:
+  stdout:
+    kind: console
+    encoder:
+        pattern: "{h({l})} {t}:{L} — {m}{n}"
+
+root:
+  level: trace
+  appenders:
+    - stdout
