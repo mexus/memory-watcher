@@ -1,13 +1,21 @@
 [package]
 name = "memory-watcher"
 version = "0.1.0"
-authors = ["mexus <gilaldpellaeon@gmail.com>"]
+edition = "2021"
 
 [dependencies]
-clap = "*"
-lazy_static = "*"
-libc = "*"
-log = "*"
-log4rs = "*"
-procinfo = { git = "https://github.com/mexus/procinfo-rs.git" }
-quick-error = "*"
+clap = {version = "3.2.22", features = ["derive"]}
+once_cell = "1"
+libc = "0.2.132"
+log = "0.4.17"
+log4rs = "1.1.1"
+
+procfs = {version = "0.14.1", default-features = false}
+
+snafu = "0.7.1"
+display-error-chain = "0.1.1"
+
+humantime = "2.1.0"
+
+# Leaks from the log4rs crate.
+anyhow = "1.0.65"
